@@ -1,0 +1,63 @@
+﻿Build started 28/05/2016 12:18:25.
+     1>Project "C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\FirstHAPI.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IHAPI /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Entity.cpp main.cpp CRectangle.cpp PlayerEntity.cpp Sprite.cpp Graphics.cpp WorldState.cpp
+         WorldState.cpp
+         Graphics.cpp
+         Sprite.cpp
+         PlayerEntity.cpp
+         CRectangle.cpp
+         main.cpp
+         Entity.cpp
+         Generating Code...
+     1>c:\users\chris\documents\projects\hapi game engine\hapi\crectangle.cpp(47): warning C4715: 'CRectangle::outSideOf' : not all control paths return a value
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\FirstHAPI.exe" /INCREMENTAL /NOLOGO /LIBPATH:HAPI HAPI_debug.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\FirstHAPI.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\FirstHAPI.lib" /MACHINE:X86 Debug\Entity.obj
+         Debug\main.obj
+         Debug\CRectangle.obj
+         Debug\PlayerEntity.obj
+         Debug\Sprite.obj
+         Debug\Graphics.obj
+         Debug\WorldState.obj
+     1>HAPI_debug.lib(Error.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(FTFont.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(FTFontManager.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(HapiCore.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(HapiInputOs.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(HapiMain.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(HapiOsSDL.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(HapiRendererSDL.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(HapiSoundSDLMixer.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(ImageLoader.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(PerfCounters.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(SDL2GameController.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(stdafx.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>HAPI_debug.lib(winfnt.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(winfnt.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(type42.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(type42.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(type1cid.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(type1cid.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(type1.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(type1.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(truetype.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(truetype.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(sfnt.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(sfnt.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(raster.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(raster.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(psmodule.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(psmodule.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(pshinter.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(pshinter.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(psaux.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(psaux.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(pfr.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(pfr.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(pcf.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(pcf.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(smooth.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(smooth.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(ftsystem.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(ftsystem.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(ftlzw.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(ftlzw.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(ftinit.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(ftinit.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(ftgzip.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(ftgzip.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(ftdebug.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(ftdebug.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(ftbitmap.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(ftbitmap.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(ftbase.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(ftbase.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(cff.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(cff.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(bdf.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(bdf.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+     1>HAPI_debug.lib(autofit.obj) : warning LNK4099: PDB 'freetype26d.pdb' was not found with 'HAPI_debug.lib(autofit.obj)' or at 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\freetype26d.pdb'; linking object as if no debug info
+         FirstHAPI.vcxproj -> C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Debug\FirstHAPI.exe
+     1>Done Building Project "C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\FirstHAPI.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.13
