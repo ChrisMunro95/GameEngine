@@ -43,7 +43,7 @@ int Sprite::getSpriteHeight() const
 }
 
 //Blits A Sprite ignoring all Alpha Values
-void Sprite::blitSprite(bool scrolling, BYTE *destPnter, int destWidth, BYTE* sourcePnter, int posX, int posY)
+void Sprite::blitSpriteBG(bool scrolling, BYTE *destPnter, int destWidth, BYTE* sourcePnter, int posX, int posY)
 {
 	int sourceWidth = spriteWidth_;
 	int sourceHeight = spriteHeight_;
@@ -52,7 +52,7 @@ void Sprite::blitSprite(bool scrolling, BYTE *destPnter, int destWidth, BYTE* so
 
 		CRectangle scrollRect(0, spriteHeight_, 0, spriteWidth_);
 		CRectangle screenRect(0, spriteHeight_, 0, spriteWidth_);
-	
+
 		//clip the rectangle
 		scrollRect.translate(posX, posY);
 		scrollRect.ClipTo(screenRect);
@@ -70,10 +70,10 @@ void Sprite::blitSprite(bool scrolling, BYTE *destPnter, int destWidth, BYTE* so
 		int sourceOffest = (spriteWidth_ - scrollRect.getWidth()) * 4;
 
 		for (int y = 0; y < sourceHeight; y++){
-			
+
 			memcpy(destPnter, sourcePnter, scrollRect.getWidth() * 4);
 
-			sourcePnter += (spriteWidth_  * 4);
+			sourcePnter += (spriteWidth_ * 4);
 			destPnter += destWidth * 4;
 		}
 
@@ -82,7 +82,7 @@ void Sprite::blitSprite(bool scrolling, BYTE *destPnter, int destWidth, BYTE* so
 
 		destPnter += (posX + posY * destWidth) * 4;
 		sourcePnter = sprite_;
-		
+
 		for (int y = 0; y < sourceHeight; y++){
 			memcpy(destPnter, sourcePnter, sourceWidth * 4);
 
@@ -95,112 +95,101 @@ void Sprite::blitSprite(bool scrolling, BYTE *destPnter, int destWidth, BYTE* so
 }
 
 //Blits A Sprite with Alpha Values
-void Sprite::blitAlphaSprite(BYTE *destPnter, int destWidth, BYTE* sourcePnter, int posX, int posY)
+void Sprite::blitSprite(BYTE *destPnter, BYTE* sourcePnter, const CRectangle &destRect,
+						int frameXpos, int frameYPos, int posX, int posY)
 {
-	int sourceWidth = spriteWidth_;
-	int sourceHeight = spriteHeight_;
+	CRectangle clippedRect(0, frameHeight_, 0, frameWidth_);
 
-	destPnter += (posX + posY * destWidth) * 4;
-	sourcePnter = sprite_;
+	//clip the rectangle
+	clippedRect.translate(posX, posY);
+	clippedRect.ClipTo(destRect);
+	clippedRect.translate(-posX, -posY);
 
-	int offset = (destWidth - sourceWidth) * 4;
+	if (posX < 0)
+		posX = 0;
+	if (posY < 0)
+		posY = 0;
 
-	for (int y = 0; y < sourceHeight; y++){
-		for (int x = 0; x < sourceWidth; x++){
+	//translate the clipped rect to the correct frame
+	clippedRect.translate(frameXpos * frameWidth_, frameYPos * frameHeight_);
+
+	//blit the image
+	destPnter += (posX + posY * destRect.getWidth()) * 4;
+	sourcePnter = sprite_ + (clippedRect.left + clippedRect.top * spriteWidth_) * 4;
+
+	int sourceOffset = (spriteWidth_ - clippedRect.getWidth()) * 4;
+
+	for (int y = 0; y < clippedRect.getHeight(); y++){
+		memcpy(destPnter, sourcePnter, clippedRect.getWidth() * 4);
+
+		sourcePnter += sourceOffset + clippedRect.getWidth() * 4;
+		destPnter += destRect.getWidth() * 4;
+	}
+
+}
+
+void Sprite::clipBlit(BYTE *destPnter, const CRectangle &destRect, BYTE* sourcePnter,
+					  int frameXpos, int frameYPos, int posX, int posY)
+{
+	CRectangle clippedRect(0, frameHeight_, 0, frameWidth_);
+
+	//clip the rectangle
+	clippedRect.translate(posX, posY);
+	clippedRect.ClipTo(destRect);
+	clippedRect.translate(-posX, -posY);
+
+	if (posX < 0)
+		posX = 0;
+	if (posY < 0)
+		posY = 0;
+
+/*	//clamp the frames to their max i.e they cant go over the total number
+	//of frames
+	if (frameXpos >= numXframes_)
+		frameXpos = numXframes_;
+
+	if (frameYPos >= numYframes_)
+		frameYPos = numYframes_;
+*/
+	//translate the clipped rect to the correct frame
+	clippedRect.translate(frameXpos * frameWidth_, frameYPos * frameHeight_);
+
+	//blit the image
+	destPnter += (posX + posY * destRect.getWidth()) * 4;
+	sourcePnter = sprite_ + (clippedRect.left + clippedRect.top * spriteWidth_) * 4;
+
+	int offset = (destRect.getWidth() - clippedRect.getWidth()) * 4;
+	int sourceOffest = (spriteWidth_ - clippedRect.getWidth()) * 4;
+
+	for (int y = 0; y < clippedRect.getHeight(); y++){
+		for (int x = 0; x < clippedRect.getWidth(); x++){
 
 			BYTE alpha = sourcePnter[3];
 
-			if (alpha > 0){
+			if (alpha > 255){
+				memcpy(destPnter, sourcePnter, clippedRect.getWidth() * 4);
+			}
+			else{
+				BYTE blue = sourcePnter[0];
+				BYTE green = sourcePnter[1];
+				BYTE red = sourcePnter[2];
 
-				if (alpha > 255){
-					memcpy(destPnter, sourcePnter, sourceWidth * 4);
-				}
-				else{
-					BYTE blue = sourcePnter[0];
-					BYTE green = sourcePnter[1];
-					BYTE red = sourcePnter[2];
-
-					destPnter[0] = destPnter[0] + ((alpha *(blue - destPnter[0])) >> 8);
-					destPnter[1] = destPnter[1] + ((alpha *(green - destPnter[1])) >> 8);
-					destPnter[2] = destPnter[2] + ((alpha *(red - destPnter[2])) >> 8);
-
-				}
+				destPnter[0] = destPnter[0] + ((alpha *(blue - destPnter[0])) >> 8);
+				destPnter[1] = destPnter[1] + ((alpha *(green - destPnter[1])) >> 8);
+				destPnter[2] = destPnter[2] + ((alpha *(red - destPnter[2])) >> 8);
 			}
 			destPnter += 4;
 			sourcePnter += 4;
 		}
 
+		sourcePnter += sourceOffest;
 		destPnter += offset;
 
 	}
 }
 
-void Sprite::clipBlit(BYTE *destPnter, const CRectangle &destRect, BYTE* sourcePnter,
-			  int frameXpos, int frameYPos, int posX, int posY)
-{
-	CRectangle clippedRect(0, frameHeight_, 0, frameWidth_);
-
-		//clip the rectangle
-		clippedRect.translate(posX, posY);
-		clippedRect.ClipTo(destRect);
-		clippedRect.translate(-posX, -posY);
-
-		if (posX < 0)
-			posX = 0;
-		if (posY < 0)
-			posY = 0;
-
-		//clamp the frames to their max i.e they cant go over the total number
-		//of frames
-		if (frameXpos >= numXframes_)
-			frameXpos = numXframes_;
-
-		if (frameYPos >= numYframes_)
-			frameYPos = numYframes_;
-
-		//translate the clipped rect to the correct frame
-		clippedRect.translate(frameXpos * frameWidth_, frameYPos * frameHeight_);
-
-		//blit the image
-		destPnter += (posX + posY * destRect.getWidth()) * 4;
-		sourcePnter = sprite_ + (clippedRect.left + clippedRect.top * spriteWidth_) * 4;
-		
-
-		int offset = (destRect.getWidth() - clippedRect.getWidth()) * 4;
-		int sourceOffest = (spriteWidth_ - clippedRect.getWidth()) * 4;
-
-		for (int y = 0; y < clippedRect.getHeight(); y++){
-			for (int x = 0; x < clippedRect.getWidth(); x++){
-
-				BYTE alpha = sourcePnter[3];
-
-				if (alpha > 0){
-
-					if (alpha > 255){
-						memcpy(destPnter, sourcePnter, clippedRect.getWidth() * 4);
-					}
-					else{
-						BYTE blue = sourcePnter[0];
-						BYTE green = sourcePnter[1];
-						BYTE red = sourcePnter[2];
-
-						destPnter[0] = destPnter[0] + ((alpha *(blue - destPnter[0])) >> 8);
-						destPnter[1] = destPnter[1] + ((alpha *(green - destPnter[1])) >> 8);
-						destPnter[2] = destPnter[2] + ((alpha *(red - destPnter[2])) >> 8);
-					}
-				}
-				destPnter += 4;
-				sourcePnter += 4;
-			}
-
-			sourcePnter += sourceOffest;
-			destPnter += offset;
-
-		}
-}
-
 DWORD* Sprite::createCollisionMask(const CRectangle& rect,
-								   int &numDwordsAcross)
+	int &numDwordsAcross)
 {
 	//calculate how many DWORD across is needed
 	numDwordsAcross = (rect.getWidth() + 31) / 32;
@@ -215,9 +204,9 @@ DWORD* Sprite::createCollisionMask(const CRectangle& rect,
 
 	for (int y = 0; y < rect.getHeight(); y++){
 		for (int x = 0; x < rect.getWidth(); x++){
-			
+
 			BYTE alpha = srcPnter[3];
-		
+
 			//each pixel is represented as a bit, 1 for solid and 0 for empty
 			//so when alpha is 255 its solid, so we make a bit
 			if (alpha == 255){

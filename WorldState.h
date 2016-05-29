@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
+#include <Vector>
 
 namespace GameGraphics{ class Graphics; };
 class PlayerEntity;
+class Tile;
 
 class WorldState
 {
@@ -18,5 +20,7 @@ private:
 	GameGraphics::Graphics *graphics_{ nullptr };
 
 	PlayerEntity *player_{ nullptr };
+
+	std::vector<Tile*> tiles;
 };
 

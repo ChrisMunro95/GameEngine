@@ -2,10 +2,9 @@
 #include "Graphics.h"
 #include "HAPI_lib.h"
 
-PlayerEntity::PlayerEntity(int GFX_ID, int maxFramesX, int maxFramesY) : GFX_ID_(GFX_ID)
+PlayerEntity::PlayerEntity(int GFX_ID, int maxFramesX, int maxFramesY) : GFX_ID_(GFX_ID), maxFrameX_(maxFramesX), maxFrameY_(maxFramesY)
 {
 	//graphics_ = new GameGraphics::Graphics();
-	setMaxFrames(maxFramesX, maxFramesY);
 }
 
 
@@ -44,9 +43,21 @@ void PlayerEntity::update()
 
 			//checks for keyboard input
 			if (keyData.scanCode[HK_DOWN] || keyData.scanCode['S']){
-				frameX++;
 				frameY = 0;
-				endPos.y = getPosition().y + 80;
+
+				//advance the frame using time ticks
+				if (timeNow - frameTimeCheck_ > frameTickInterval_){
+
+					frameTimeCheck_ = timeNow;
+					frameX++;
+				}
+				
+				//Constrain the frames
+				if (frameX > maxFrameX_){
+					frameX = 0;
+				}
+
+				endPos.y = getPosition().y + 32;
 				endPos.x = getPosition().x;
 
 				direction = endPos - getPosition();
@@ -56,10 +67,22 @@ void PlayerEntity::update()
 				position_.y = movement.y;
 			}
 			if (keyData.scanCode[HK_UP] || keyData.scanCode['W']){
-				frameX = 0;
+
 				frameY = 3;
 
-				endPos.y = getPosition().y - 80;
+				//advance the frame using time ticks
+				if (timeNow - frameTimeCheck_ > frameTickInterval_){
+
+					frameTimeCheck_ = timeNow;
+					frameX++;
+				}
+
+				//Constrain the frames
+				if (frameX > maxFrameX_){
+					frameX = 0;
+				}
+
+				endPos.y = getPosition().y - 32;
 				endPos.x = getPosition().x;
 
 				direction = endPos - getPosition();
@@ -67,41 +90,57 @@ void PlayerEntity::update()
 
 				movement = position_ + direction * moveSpeed_;
 				position_.y = movement.y;
-
-				frameX++;
 			}
 			if (keyData.scanCode[HK_RIGHT] || keyData.scanCode['D']){
-				frameX = 0;
+
 				frameY = 2;
 
+				//advance the frame using time ticks
+				if (timeNow - frameTimeCheck_ > frameTickInterval_){
+
+					frameTimeCheck_ = timeNow;
+					frameX++;
+				}
+
+				//Constrain the frames
+				if (frameX > maxFrameX_){
+					frameX = 0;
+				}
+
 				endPos.y = getPosition().y;
-				endPos.x = getPosition().x + 80;
+				endPos.x = getPosition().x + 32;
 
 				direction = endPos - getPosition();
 				direction.NormaliseInPlace();
 
 				movement = position_ + direction * moveSpeed_;
 				position_.x = movement.x;
-
-				frameX++;
 			}
 			if (keyData.scanCode[HK_LEFT] || keyData.scanCode['A']){
-				frameX = 0;
+				
 				frameY = 1;
 
+				//advance the frame using time ticks
+				if (timeNow - frameTimeCheck_ > frameTickInterval_){
+
+					frameTimeCheck_ = timeNow;
+					frameX++;
+				}
+
+				//Constrain the frames
+				if (frameX > maxFrameX_){
+					frameX = 0;
+				}
+
 				endPos.y = getPosition().y;
-				endPos.x = getPosition().x - 80;
+				endPos.x = getPosition().x - 32;
 
 				direction = endPos - getPosition();
 				direction.NormaliseInPlace();
 
 				movement = position_ + direction * moveSpeed_;
 				position_.x = movement.x;
-				
-				frameX++;
 			}
-			HAPI->RenderText(450, 100, (255), "FrameX: " + std::to_string(frameX));
-
 			setPosition((int)position_.x, (int)position_.y);
 			setFrames(frameX, frameY);
 		}

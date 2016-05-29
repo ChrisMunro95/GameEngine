@@ -88,6 +88,7 @@
     <ClCompile Include="PlayerEntity.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="WorldState.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -96,11 +97,9 @@
     <ClInclude Include="PlayerEntity.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="WorldState.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

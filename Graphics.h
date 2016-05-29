@@ -29,7 +29,8 @@ namespace GameGraphics{
 						        int numDwordsAcross);
 
 		void renderSprite(int ID, Vector2D position, int frameXNumber,
-			int frameYNumber);
+						  int frameYNumber);
+		void renderFastSprite(int ID, Vector2D position, int frameXNumber, int frameYNumber);
 		void renderBG(int ID, int posX, int posY, bool scrolling);
 
 		const int getScreenWidth();

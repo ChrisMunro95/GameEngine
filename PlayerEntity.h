@@ -42,15 +42,17 @@ private:
 	DWORD tickTimeCheck_ = 0;
 	DWORD tickInterval_ = 10;
 
-	DWORD padTimeCheck_ = 0;
-	DWORD padTickInterval_ = 100;
+	DWORD frameTimeCheck_ = 0;
+	DWORD frameTickInterval_ = 80;
 	 
 	Vector2D position_{0, 0};
 
-	float moveSpeed_{ 10 };
+	float moveSpeed_{ 2.5 };
 	
 	int frameX = 0;
 	int frameY = 0;
+	int maxFrameX_ = 0;
+	int maxFrameY_ = 0;
 
 	CRectangle rect_{ 0, 0, 0, 0 };
 

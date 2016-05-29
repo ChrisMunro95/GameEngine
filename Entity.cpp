@@ -29,16 +29,7 @@ void Entity::setMaxFrames(int maxX, int maxY)
 void Entity::setFrames(int frameX, int frameY)
 {
 	frameX_ = frameX;
-
-	if (frameX > maxFrameX_){
-		frameX_ = 0;
-	}
-
 	frameY_ = frameY;
-
-	if (frameY > maxFrameY_){
-		frameY_ = 0;
-	}
 }
 
 void Entity::setBoundingRect(int width, int height)

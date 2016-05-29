@@ -97,14 +97,21 @@ void GameGraphics::Graphics::renderSprite(int ID, Vector2D position, int frameXN
 						
 {
 	CRectangle screenRect(0, screenHeight_, 0, screenWidth_);
-	BYTE *tempScreen = screen_;
+	//BYTE *tempScreen = screen_;
+	//BYTE *tempSource = nullptr;
+	sprites_[ID]->clipBlit(screen_, screenRect, nullptr, frameXNumber, frameYNumber, (int)position.x, (int)position.y);
+}
+
+void GameGraphics::Graphics::renderFastSprite(int ID, Vector2D position, int frameXNumber, int frameYNumber)
+{
+	CRectangle screenRect(0, screenHeight_, 0, screenWidth_);
 	BYTE *tempSource = nullptr;
-	sprites_[ID]->clipBlit(tempScreen, screenRect, tempSource, frameXNumber, frameYNumber, (int)position.x, (int)position.y);
+	sprites_[ID]->blitSprite(screen_, nullptr, screenRect, frameXNumber, frameYNumber, position.x, position.y);
 }
 
 void GameGraphics::Graphics::renderBG(int ID, int posX, int posY, bool scrolling)
 {
 	BYTE *tempScreen = screen_;
 	BYTE *tempSource = nullptr;
-	sprites_[ID]->blitSprite(scrolling, tempScreen, screenWidth_, tempSource, posX, posY);
+	sprites_[ID]->blitSpriteBG(scrolling, tempScreen, screenWidth_, tempSource, posX, posY);
 }

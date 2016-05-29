@@ -14,10 +14,10 @@ public:
 	bool loadSprite(std::string spriteName, int frameWidth, int frameHeight, 
 					int numXframes, int numYframes);
 
-	void blitSprite(bool scrolling, BYTE *destPnter, int destWidth, BYTE* sourcePnter,
-		int posX, int posY);
-	void blitAlphaSprite(BYTE *destPnter, int destWidth,
-		BYTE* sourcePnter, int posX, int posY);
+	void blitSpriteBG(bool scrolling, BYTE *destPnter, int destWidth, BYTE* sourcePnter,
+					  int posX, int posY);
+	void blitSprite(BYTE *destPnter, BYTE* sourcePnter, const CRectangle &destRect, 
+					int frameXpos, int frameYPos, int posX, int posY);
 
 	void clipBlit(BYTE *destPnter, const CRectangle &destRect,
 				  BYTE *sourcePnter, int frameNumber,
