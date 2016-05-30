@@ -5,6 +5,7 @@
 namespace GameGraphics{ class Graphics; };
 class PlayerEntity;
 class Tile;
+class MapLoader;
 
 class WorldState
 {
@@ -21,6 +22,8 @@ private:
 
 	PlayerEntity *player_{ nullptr };
 
+	MapLoader *mapLoader_{nullptr};
 	std::vector<Tile*> tiles;
+	std::vector<int> mapData_;
 };
 

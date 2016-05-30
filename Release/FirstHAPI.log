@@ -1,26 +1,20 @@
-﻿Build started 29/05/2016 21:18:25.
+﻿Build started 30/05/2016 20:30:30.
      1>Project "C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\FirstHAPI.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IHAPI /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Entity.cpp main.cpp CRectangle.cpp PlayerEntity.cpp Sprite.cpp Graphics.cpp Tile.cpp WorldState.cpp
-         Entity.cpp
-         main.cpp
-         CRectangle.cpp
-         PlayerEntity.cpp
-         Sprite.cpp
-         Graphics.cpp
-     1>Graphics.cpp(109): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         Tile.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IHAPI /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt WorldState.cpp
          WorldState.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Release\FirstHAPI.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:HAPI HAPI.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Release\FirstHAPI.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Release\FirstHAPI.lib" /MACHINE:X86 /SAFESEH Release\Entity.obj
          Release\main.obj
          Release\CRectangle.obj
+         Release\MapLoader.obj
          Release\PlayerEntity.obj
          Release\Sprite.obj
          Release\Graphics.obj
          Release\Tile.obj
          Release\WorldState.obj
          Generating code
+     1>c:\users\chris\documents\projects\hapi game engine\hapi\maploader.cpp(107): warning C4715: 'MapLoader::getIndexedFrame' : not all control paths return a value
          Finished generating code
      1>HAPI.lib(HapiMain.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Release\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
      1>HAPI.lib(stdafx.obj) : warning LNK4204: 'C:\Users\Chris\Documents\Projects\Hapi Game Engine\HAPI\Release\vc120.pdb' is missing debugging information for referencing module; linking object as if no debug info
@@ -40,4 +34,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.50
+Time Elapsed 00:00:02.12

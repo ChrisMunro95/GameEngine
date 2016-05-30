@@ -11,6 +11,7 @@
 #include "Graphics.h"
 #include "CRectangle.h"
 #include "Vector2D.h"
+#include "MapLoader.h"
 
 #include <iostream>
 
@@ -29,6 +30,7 @@ WorldState::~WorldState()
 {
 	delete graphics_;
 	delete player_;
+	delete mapLoader_;
 
 	for (unsigned int i = 0; i < tiles.size(); i++){
 		delete tiles[i];
@@ -67,6 +69,19 @@ bool WorldState::createWorld()
 		player_->setPosition(540, 360);
 		player_->setBoundingRect(32, 32);
 
+		mapLoader_ = new MapLoader();
+		mapLoader_->loadMap("Resources/Maps/customMap1.txt");
+		mapData_ = mapLoader_->getMapData();
+
+		for (unsigned int i = 0; i < mapData_.size(); i++){
+			Frame newFrame = mapLoader_->getIndexedFrame(mapData_[i]);
+
+			tiles[i]->xFrame_ = newFrame.xFrame;
+			tiles[i]->yFrame_ = newFrame.yFrame;
+		}
+
+
+
 		return true;
 	}
 	catch (...){
@@ -81,9 +96,9 @@ void WorldState::updateWorld()
 	float xPos = 0;
 
 	while (HAPI->Update()){
-
+		
 		for (auto tile : tiles){
-			graphics_->renderFastSprite(0, tile->getPosition(), 0, 1);
+			graphics_->renderFastSprite(0, tile->getPosition(), tile->xFrame_, tile->yFrame_);
 		}
 
 		player_->setAliveFlag(true);
